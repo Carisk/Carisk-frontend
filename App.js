@@ -11,7 +11,7 @@ import Loading from './views/Loading'
 const App = () => {
   return (
     <>
-      <Loading/>
+      <DataCollection/>
     </>
   );
 };

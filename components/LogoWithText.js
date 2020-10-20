@@ -7,7 +7,7 @@ import {
   Text
 } from 'react-native';
 
-const Loading = () => {
+const LogoWithText = () => {
   return (
     <View style={styles.container}>
         <Image 
@@ -20,8 +20,7 @@ const Loading = () => {
 
 const styles = StyleSheet.create({
     container: {
-        alignItems: 'center',
-        backgroundColor: '#E3EFF5'
+        alignItems: 'center'
     },
     logo: {
         width: 100,
@@ -34,4 +33,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Loading;
+export default LogoWithText;

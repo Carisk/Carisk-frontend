@@ -23,12 +23,12 @@ class DataCollection extends Component {
     }
   }
 
-  async storeData () {
-    await AsyncStorage.setItem('loadedUser',    String(true))
-    await AsyncStorage.setItem('sex',           this.state.sex)
-    await AsyncStorage.setItem('vehicle_type',  this.state.vehicle_type)
-    await AsyncStorage.setItem('vehicle_age',   this.state.vehicle_age)
-    await AsyncStorage.setItem('age',           this.state.age)
+  storeData () {
+    AsyncStorage.setItem('loadedUser',    String(true))
+    AsyncStorage.setItem('sex',           this.state.sex)
+    AsyncStorage.setItem('vehicle_type',  this.state.vehicle_type)
+    AsyncStorage.setItem('vehicle_age',   this.state.vehicle_age)
+    AsyncStorage.setItem('age',           this.state.age)
 
     this.props.changePage('Dashboard')
   }

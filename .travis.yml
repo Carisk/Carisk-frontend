@@ -1,0 +1,19 @@
+language: android
+before_install:
+- nvm install 13
+- node --version
+install:
+- npm install
+- yes | sdkmanager "platforms;android-28"
+script:
+- cd android && ./gradlew assembleRelease
+- cp app/build/outputs/apk/release/app-release.apk ..
+- cd ..
+deploy:
+  provider: releases
+  file: app-release.apk
+  on:
+    repo: Carisk/Carisk-frontend
+    all_branches: true
+    condition: $TRAVIS_BRANCH =~ ^(development)$
+  skip_cleanup: 'true'

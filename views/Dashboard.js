@@ -18,6 +18,8 @@ class Dashboard extends Component {
       showSign:         false,
       showSpinner:      true,
       signUrl:          null,
+      primaryText:      '',
+      secondaryText:    '',
 
       latitude:     null,
       longitude:    null,
@@ -62,7 +64,7 @@ class Dashboard extends Component {
     )
 
     // send to api
-    const url = 'https://mywebsite.com/'
+    const url = 'https://carisk-backend.herokuapp.com/predict/'
     fetch(url, {
       method: 'POST',
       headers: {
@@ -80,13 +82,19 @@ class Dashboard extends Component {
     })
 
     // get response
-      .then((response) => response.json())
+      .then((response) => {
+        console.log(response)
+        response.json()
+      })
       .then((json) => {
+        console.log(json)
         this.setState({
           backgroundColor:  json.backgroundColor,
           showSign:         json.showSign,
           showSpinner:      json.showSpinner,
-          signUrl:          json.signUrl
+          signUrl:          json.signUrl,
+          primaryText:      json.primaryText,
+          secondaryText:    json.secondaryText,
         })
       })
       .catch((error) => console.error(error))
@@ -96,8 +104,8 @@ class Dashboard extends Component {
     return (
       <View style={{...styles.maincontainer, backgroundColor: this.state.backgroundColor}}>
         <View style={styles.centralview}>
-          <Text style={styles.maintext}> Main text </Text>
-          <Text style={styles.maintext}> Subtitle text </Text>
+          <Text style={styles.maintext}> { this.state.primaryText } </Text>
+          <Text style={styles.maintext}> { this.state.secondaryText } </Text>
           {
             this.state.showSign ?
               (

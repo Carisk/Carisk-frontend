@@ -68,7 +68,6 @@ class Dashboard extends Component {
     fetch(url, {
       method: 'POST',
       headers: {
-        Accept: 'application/json',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
@@ -84,7 +83,7 @@ class Dashboard extends Component {
     // get response
       .then((response) => {
         console.log(response)
-        response.json()
+        return response.json()
       })
       .then((json) => {
         console.log(json)
@@ -100,20 +99,32 @@ class Dashboard extends Component {
       .catch((error) => console.error(error))
   }
 
+//   this.setState({
+//       "backgroundColor": "#451111",
+//       "showSign": true,
+//       "showSpinner": true,
+//       "signUrl": "https://img2.gratispng.com/20180414/kpe/kisspng-maggy-monica-s-gang-smudge-jimmy-five-watermelon-5ad23263150f44.0907236115237248990863.jpg",
+//       "primaryText": "magali",
+//       "secondaryText": "MaGaLi"
+//   })
+// }
+
   render () {
     return (
       <View style={{...styles.maincontainer, backgroundColor: this.state.backgroundColor}}>
         <View style={styles.centralview}>
           <Text style={styles.maintext}> { this.state.primaryText } </Text>
-          <Text style={styles.maintext}> { this.state.secondaryText } </Text>
+          <Text style={styles.sectext}> { this.state.secondaryText } </Text>
           {
             this.state.showSign ?
               (
-                <Image 
-                  source={{
-                    uri: this.state.signUrl,
-                  }}
-                  style={styles.signimage}/>
+                <View style={styles.imagecontainer}>
+                  <Image 
+                    source={{
+                      uri: this.state.signUrl,
+                    }}
+                    style={styles.signimage}/>
+                </View>
               ) : null
           }
           {
@@ -141,9 +152,26 @@ const styles = StyleSheet.create({
   centralview: {
 
   },
+  imagecontainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 20
+  },
   signimage: {
-    height: 100,
-    width: 100
+    height: 150,
+    minWidth: 150
+  },
+  maintext: {
+    fontSize: 28,
+    textAlign: 'center'
+    ,marginBottom: 10,
+    fontWeight: '700'
+  },
+  sectext: {
+    fontSize: 26,
+    textAlign: 'center'
+    ,marginBottom: 10,
+    fontWeight: '400'
   }
 });
 
